@@ -8,8 +8,6 @@ import static org.junit.Assert.*;
 
 public class SimpleTreeTest {
 
-
-
     @Test
     public void preorderTraversal() {
         SimpleTree simpleTree = new SimpleTree();
