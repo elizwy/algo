@@ -1,5 +1,7 @@
 package com.zwy.muke.sort;
 
+import com.zwy.muke.sort.Helper.SortHelper;
+
 /**
  * 选择排序, 固定位置排序
  */
@@ -25,7 +27,8 @@ public  class  SelectSort<T extends Comparable> {
     }
 
     public static void main(String[] args) {
-        Integer[] array=new Integer[]{6,-3,0,8,9,-2,5,1,7};
+        SortHelper sortHelper = new SortHelper();
+        Integer[] array=sortHelper.generateArray(100,100,200);
         SelectSort sort = new SelectSort();
         sort.sort(array);
         printArray(array);
