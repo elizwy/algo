@@ -1,10 +1,15 @@
 package com.zwy.muke.sort.Helper;
 
+import com.zwy.muke.sort.Sort;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Random;
 
 public class SortHelper {
+    private static final Logger logger= LoggerFactory.getLogger("SortHelper");
 
-    public Integer[] generateArray(int size,int rangL,int rangR){
+    public static Integer[] generateArray(int size,int rangL,int rangR){
         if(rangR<=rangL){
             throw new RuntimeException("右区间必须大于左区间");
         }
@@ -16,6 +21,15 @@ public class SortHelper {
         }
         return arrays;
     }
+
+    public static <T> void testSort(Sort sort,T[] array){
+        long startTime=System.currentTimeMillis();
+        sort.sort(array);
+        long endTime=System.currentTimeMillis();
+        System.out.println("耗时:["+(endTime-startTime)+"]毫秒");
+        sort.checkSort();
+    }
+
     public static void main(String[] args) {
         SortHelper sortHelper = new SortHelper();
         Integer[] result = sortHelper.generateArray(50, 300, 400);
