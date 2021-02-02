@@ -4,10 +4,10 @@ public interface Sort<T> {
     /**
      * 排序
      */
-    void sort(T[] array);
+    T[] sort(T[] array);
 
     /**
      * 检验排序结果
      */
-    void checkSort();
+    void checkSort(T[] array);
 }

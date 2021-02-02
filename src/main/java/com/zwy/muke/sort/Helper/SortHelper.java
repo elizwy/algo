@@ -24,10 +24,10 @@ public class SortHelper {
 
     public static <T> void testSort(Sort sort,T[] array){
         long startTime=System.currentTimeMillis();
-        sort.sort(array);
+        Object[] result = sort.sort(array);
         long endTime=System.currentTimeMillis();
         System.out.println("耗时:["+(endTime-startTime)+"]毫秒");
-        sort.checkSort();
+        sort.checkSort(result);
     }
 
     public static void main(String[] args) {
