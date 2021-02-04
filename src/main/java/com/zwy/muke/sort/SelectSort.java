@@ -8,9 +8,13 @@ import com.zwy.muke.sort.Helper.SortHelper;
  * 空间复杂度：
  * 缺点： 每个元素被访问多次，元素之间没有关系
  */
-public  class  SelectSort<T extends Comparable> implements Sort<T>{
+public  class  SelectSort<T extends Comparable> extends AbstractSort<T>{
+    public SelectSort(T[] array) {
+        super(array);
+    }
+
     @Override
-    public T[] sort(T[] array){
+    public T[] sort(){
         int length=array.length;
         for(int i=0;i<length;i++){
             int minIndex=i;
@@ -32,25 +36,9 @@ public  class  SelectSort<T extends Comparable> implements Sort<T>{
     }
 
     public static void main(String[] args) {
-        Integer[] array=SortHelper.generateArray(100001230,100,200);
-        SelectSort sort = new SelectSort();
-        SortHelper.testSort(sort,array);
-    }
-
-
-
-    private static <T> void printArray(T[] array) {
-        for (T element: array) {
-            System.out.println(element);
-        }
-    }
-
-    @Override
-    public void checkSort(T[] array) {
-        for(int i=1;i<array.length;i++){
-            if(array[i].compareTo(array[i-1])<0){
-                throw new RuntimeException("无序数组");
-            };
-        }
+        Integer[] array=SortHelper.generateArray(100,100,200);
+        SelectSort sort = new SelectSort(array);
+        SortHelper.testSort(sort,true);
+        sort.echo();
     }
 }

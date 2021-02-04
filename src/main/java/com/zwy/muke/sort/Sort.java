@@ -4,7 +4,7 @@ public interface Sort<T> {
     /**
      * 排序
      */
-    T[] sort(T[] array);
+    T[] sort();
 
     /**
      * 检验排序结果

@@ -9,13 +9,22 @@ import com.zwy.muke.sort.Helper.SortHelper;
  * 缺点：不稳定，如果假设失败，将完全退化为O(n^2)级别 ； 元素位置频繁移动
  * @param <T>
  */
-public class InsertOrder <T extends Comparable> implements Sort<T> {
+public class InsertOrder <T extends Comparable> extends AbstractSort<T>{
+    public InsertOrder(T[] array) {
+        super(array);
+    }
+
     @Override
-    public T[] sort(T[] array) {
-        for(int i=1;i<array.length;i++){
-            for(int j=i-1;j>=0;j--){
-                if(array[i].compareTo(array[j])<=0){
-                    adjust(array,j+1,i);
+    public T[] sort() {
+        for(int now=1;now<array.length;now++){
+            for(int j=now-1;j>=0;j--){
+
+                if(array[now].compareTo(array[j])>=0){
+                    adjust(array,j+1,now);
+                    break;
+                }
+                if(j==0){
+                    adjust(array,j,now);
                 }
             }
         }
@@ -27,20 +36,17 @@ public class InsertOrder <T extends Comparable> implements Sort<T> {
             return;
         }
         T tempValue=array[endIndex];
-        for(int l=endIndex-1;l>=startIndex;l--){
-            array[l+1]=array[l];
+        while (endIndex>startIndex){
+            array[endIndex]=array[endIndex-1];
+            endIndex--;
         }
         array[startIndex]=tempValue;
     }
 
-    @Override
-    public void checkSort(T[] array) {
-
-    }
-
     public static void main(String[] args) {
-        Integer[] array = SortHelper.generateArray(10, 20, 50);
-        InsertOrder<Integer> sort = new InsertOrder<>();
-        SortHelper.testSort(sort,array);
+        Integer[] array = SortHelper.generateArray(10000, 20, 50);
+        InsertOrder<Integer> sort = new InsertOrder<>(array);
+        SortHelper.testSort(sort,true);
+//        sort.echo();
     }
 }
