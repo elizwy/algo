@@ -3,7 +3,10 @@ package com.zwy.muke.sort;
 import com.zwy.muke.sort.Helper.SortHelper;
 
 /**
- * 选择排序, 固定位置排序
+ * 选择排序, 固定位置排序，保证有序增长
+ * 时间复杂度： O(n^2)
+ * 空间复杂度：
+ * 缺点： 每个元素被访问多次，元素之间没有关系
  */
 public  class  SelectSort<T extends Comparable> implements Sort<T>{
     @Override
