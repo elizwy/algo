@@ -22,6 +22,33 @@ public class SortHelper {
         return arrays;
     }
 
+    public static Integer[] generateNearlyOrderArray(int size,int rangL,int rangR){
+        if(rangR<=rangL){
+            throw new RuntimeException("右区间必须大于左区间");
+        }
+        Integer[] arrays = new Integer[size];
+        for(int i=0;i<size;i++){
+            arrays[i]=i+rangL;
+        }
+
+        Random random = new Random(System.currentTimeMillis());
+        for(int i=3;i>=0;i--){
+            int l=random.nextInt(size);
+            int r=random.nextInt(size);
+            swap(arrays,l,r);
+        }
+
+
+        return arrays;
+    }
+
+    private static void swap(Integer[] arrays, int i, int j) {
+        int tmp=arrays[i];
+        arrays[i]=arrays[j];
+        arrays[j]=arrays[i];
+    }
+
+
     public static <T> void testSort(Sort sort,Boolean check){
         long startTime=System.currentTimeMillis();
         Object[] result = sort.sort();

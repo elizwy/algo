@@ -16,6 +16,31 @@ public class InsertOrder <T extends Comparable> extends AbstractSort<T>{
 
     @Override
     public T[] sort() {
+        return sort2();
+    }
+
+    /**
+     * 赋值移动位置 代替 交换位置（3次赋值）
+     * @return
+     */
+    private T[] sort2() {
+        for(int i=1;i<array.length;i++){
+            T e=array[i];
+            int j;
+            for( j=i;j>0;j--){
+                if(e.compareTo(array[j-1])>=0){
+                    break;
+                }
+                array[j]=array[j-1];
+            }
+            if(j!=i){
+                array[j]=e;
+            }
+        }
+        return array;
+    }
+
+    private T[] sort1() {
         for(int now=1;now<array.length;now++){
             for(int j=now-1;j>=0;j--){
 
@@ -28,7 +53,7 @@ public class InsertOrder <T extends Comparable> extends AbstractSort<T>{
                 }
             }
         }
-       return array;
+        return array;
     }
 
     private void adjust(T[] array, int startIndex, int endIndex) {
@@ -44,9 +69,9 @@ public class InsertOrder <T extends Comparable> extends AbstractSort<T>{
     }
 
     public static void main(String[] args) {
-        Integer[] array = SortHelper.generateArray(10000, 20, 50);
+        Integer[] array = SortHelper.generateArray(10, 20, 50);
         InsertOrder<Integer> sort = new InsertOrder<>(array);
         SortHelper.testSort(sort,true);
-//        sort.echo();
+        sort.echo();
     }
 }
