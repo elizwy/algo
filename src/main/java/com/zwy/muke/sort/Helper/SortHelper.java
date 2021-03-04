@@ -20,7 +20,7 @@ public class SortHelper {
         return arrays;
     }
 
-    public static Integer[] generateNearlyOrderArray(int size,int rangL,int rangR){
+    public static Integer[] generateNearlyOrderArray(int size,int rangL,int rangR,int unOrderSize){
         if(rangR<=rangL){
             throw new RuntimeException("右区间必须大于左区间");
         }
@@ -33,7 +33,7 @@ public class SortHelper {
         }
 
         Random random = new Random(System.currentTimeMillis());
-        for(int i=0;i>=0;i--){
+        for(int i=0;i<unOrderSize;i++){
             int l=random.nextInt(size);
             int r=random.nextInt(size);
             swap(arrays,l,r);

@@ -1,15 +1,10 @@
 package com.zwy.muke.sort;
 
-public class AbstractSort<T extends Comparable> implements Sort<T>{
+public abstract class AbstractSort<T extends Comparable> implements Sort<T>{
     T[] array;
 
     public AbstractSort(T[] array) {
         this.array = array;
-    }
-
-    @Override
-    public T[] sort() {
-        return null;
     }
 
     @Override
@@ -26,5 +21,11 @@ public class AbstractSort<T extends Comparable> implements Sort<T>{
         for (T element: array) {
             System.out.println(element);
         }
+    }
+
+    protected void swap(int left,int right){
+        T tmp=array[left];
+        array[left]=array[right];
+        array[right]=tmp;
     }
 }
