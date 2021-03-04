@@ -9,8 +9,8 @@ import com.zwy.muke.sort.Helper.SortHelper;
  * 缺点：不稳定，如果假设失败，将完全退化为O(n^2)级别 ； 元素位置频繁移动
  * @param <T>
  */
-public class InsertOrder <T extends Comparable> extends AbstractSort<T>{
-    public InsertOrder(T[] array) {
+public class InsertSort<T extends Comparable> extends AbstractSort<T>{
+    public InsertSort(T[] array) {
         super(array);
     }
 
@@ -70,7 +70,7 @@ public class InsertOrder <T extends Comparable> extends AbstractSort<T>{
 
     public static void main(String[] args) {
         Integer[] array = SortHelper.generateArray(10, 20, 50);
-        InsertOrder<Integer> sort = new InsertOrder<>(array);
+        InsertSort<Integer> sort = new InsertSort<>(array);
         SortHelper.testSort(sort,true);
         sort.echo();
     }

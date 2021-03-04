@@ -23,7 +23,9 @@ public  class  SelectSort<T extends Comparable> extends AbstractSort<T>{
                     minIndex=j;
                 }
             }
-            swapElement(array,i,minIndex);
+            if(minIndex!=i){
+                swapElement(array,i,minIndex);
+            }
         }
         return array;
     }

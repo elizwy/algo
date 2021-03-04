@@ -1,13 +1,11 @@
 package com.zwy.muke.sort.Helper;
 
 import com.zwy.muke.sort.Sort;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.util.Random;
 
 public class SortHelper {
-    private static final Logger logger= LoggerFactory.getLogger("SortHelper");
 
     public static Integer[] generateArray(int size,int rangL,int rangR){
         if(rangR<=rangL){
@@ -26,13 +24,16 @@ public class SortHelper {
         if(rangR<=rangL){
             throw new RuntimeException("右区间必须大于左区间");
         }
+        if(size>(rangR-rangL)){
+            throw new RuntimeException("可选空间不足");
+        }
         Integer[] arrays = new Integer[size];
         for(int i=0;i<size;i++){
             arrays[i]=i+rangL;
         }
 
         Random random = new Random(System.currentTimeMillis());
-        for(int i=3;i>=0;i--){
+        for(int i=0;i>=0;i--){
             int l=random.nextInt(size);
             int r=random.nextInt(size);
             swap(arrays,l,r);
@@ -53,7 +54,7 @@ public class SortHelper {
         long startTime=System.currentTimeMillis();
         Object[] result = sort.sort();
         long endTime=System.currentTimeMillis();
-        System.out.println("耗时:["+(endTime-startTime)+"]毫秒");
+        System.out.println(sort.getClass().getSimpleName()+"耗时:["+(endTime-startTime)+"]毫秒");
         if(check){
             sort.checkSort(result);
         }
